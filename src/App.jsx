@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './assets/pages/Home';
 import Bosses from './assets/pages/Bosses';
@@ -8,7 +7,7 @@ import './assets/style/App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Bosses" element={<Bosses />} />
@@ -20,4 +19,3 @@ function App() {
 }
 
 export default App;
-

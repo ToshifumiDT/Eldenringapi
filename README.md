@@ -1,8 +1,22 @@
-# React + Vite
+# Elden Ring API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that displays bosses, weapons, and armor from the [Elden Ring API](https://eldenring.fanapis.com/).
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 20 or later
+- npm
+
+## Development
+
+```sh
+npm install
+npm run dev
+```
+
+The project also provides these commands:
+
+- `npm run lint` checks the source files with ESLint.
+- `npm run build` creates a production build in `dist`.
+- `npm run preview` serves the production build locally.
+- `npm run deploy` builds and publishes `dist` to GitHub Pages.
