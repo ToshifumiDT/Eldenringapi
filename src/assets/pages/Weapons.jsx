@@ -3,50 +3,60 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../style/pages.css';
 
-function Bosses() {
-  const [bossData, setBossData] = useState([]);
+function Weapons() {
+  const [weaponData, setWeaponData] = useState([]);
 
   useEffect(() => {
-    axios.get('https://eldenring.fanapis.com/api/bosses?limit=100')
+    axios.get('https://eldenring.fanapis.com/api/weapons?limit=100')
       .then(response => {
-        setBossData(response.data.data);
+        setWeaponData(response.data.data);
       })
       .catch(error => {
-        console.error('Error fetching bosses:', error);
+        console.error('Error fetching weapons:', error);
       });
   }, []);
 
   return (
-    <div id="bossCards">
-{/* link to home. dont write /home here */}
-      <nav>
+    <main id="weaponCards">
+      <nav className="page-nav" aria-label="Back to home">
         <Link to="/">Home</Link>
       </nav>
 
-      <h2>Bosses</h2>
-      {bossData.map((boss) => (
-        <div key={boss.id} className="boss-card">
-          <div className="boss-image">
-            <img
-              src={boss.image ? boss.image : "https://eldenring.fanapis.com/api/bosses?limit=100"}
-              alt={boss.name}
-            />
-          </div>
-          <h2>{boss.name}</h2>
-          <p><strong>Region:</strong> {boss.region}</p>
-          <p><strong>Description:</strong> {boss.description}</p>
-          <p><strong>Location:</strong> {boss.location}</p>
-          <p><strong>Drops:</strong></p>
+      <h1 className="page-title">Weapons</h1>
+      {weaponData.map((weapon) => (
+        <article key={weapon.id} className="weapon-card">
+          {weapon.image ? (
+            <div className="weapon-image">
+              <img
+                src={weapon.image}
+                alt={weapon.name}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ) : (
+            <div
+              className="image-placeholder"
+              role="img"
+              aria-label={`${weapon.name} image unavailable`}
+            >
+              Image unavailable
+            </div>
+          )}
+          <h2 className="card-title">{weapon.name}</h2>
+          <p><strong>Category:</strong> {weapon.category}</p>
+          <p><strong>Description:</strong> {weapon.description}</p>
+          <p><strong>Weight:</strong> {weapon.weight}</p>
+          <p><strong>Required attributes:</strong></p>
           <ul>
-            {boss.drops.map((drop, index) => (
-              <li key={index}>{drop}</li>
+            {weapon.requiredAttributes?.map((attribute) => (
+              <li key={attribute.name}>{attribute.name}: {attribute.amount}</li>
             ))}
           </ul>
-          <p><strong>Health Points:</strong> {boss.healthPoints}</p>
-        </div>
+        </article>
       ))}
-    </div>
+    </main>
   );
 }
 
-export default Bosses;
+export default Weapons;

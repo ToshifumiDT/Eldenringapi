@@ -1,87 +1,216 @@
-*{
-    padding: 0%;
-    margin:0%
+#bossCards,
+#armorCards,
+#weaponCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  width: min(100%, 92rem);
+  min-height: 100vh;
+  margin-inline: auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 3.5rem) clamp(3rem, 7vw, 6rem);
 }
 
-
-
-
-/*--------------for desktop--------------*/
-@media (min-width: 1000px) {
-
-h2 {
-    text-align: center;
-    margin: 100px 0 50px 0;
-    font-size: 64px;
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+.page-nav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 10;
+  grid-column: 1 / -1;
+  width: fit-content;
+  margin-bottom: clamp(1rem, 3vw, 2rem);
 }
 
-ul {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 50px;
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+.page-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 1.15rem;
+  border: 1px solid var(--color-border);
+  background: rgba(12, 13, 12, 0.82);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-gold-light);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
 
-
-
-
-img {
-    justify-content: center;  
-    align-items: center; 
-    text-align: center;
-    width: 300px;
+.page-nav a::before {
+  margin-right: 0.55rem;
+  content: "←";
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
-div {
-    text-align: center;
+.page-nav a:hover {
+  border-color: var(--color-border-strong);
+  background: rgba(38, 35, 28, 0.94);
+  transform: translateX(-2px);
 }
 
+.page-title {
+  grid-column: 1 / -1;
+  margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
+  color: var(--color-text);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.7);
 }
 
-.boss-card, .armor-card, .weapon-card {
-    max-width: 500px;
+.page-title::after {
+  display: block;
+  width: min(8rem, 30vw);
+  height: 1px;
+  margin: clamp(1rem, 2.5vw, 1.5rem) auto 0;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  content: "";
 }
 
-
-
-/*--------------for mobile--------------*/
-
-@media (max-width: 999px) {
-
-h2 {
-    text-align: center;
-    margin: 60px 0 30px 0;
-    font-size: 32px;
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-    
-ul {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 30px;
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+.boss-card,
+.armor-card,
+.weapon-card {
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background: linear-gradient(155deg, var(--color-surface-raised), var(--color-surface));
+  box-shadow: var(--shadow-card);
+  color: var(--color-text-muted);
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
-
-
-img {
-    justify-content: center;  
-    align-items: center; 
-    text-align: center;
-    width: 150px;
+.boss-card:hover,
+.armor-card:hover,
+.weapon-card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.56), 0 0 30px rgba(215, 182, 103, 0.07);
+  transform: translateY(-4px);
 }
 
-div {
-    text-align: center;
+.boss-image,
+.armor-image,
+.weapon-image,
+.image-placeholder {
+  display: grid;
+  width: 100%;
+  min-height: clamp(12rem, 26vw, 19rem);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(215, 182, 103, 0.12);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(215, 182, 103, 0.16), transparent 48%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), rgba(0, 0, 0, 0.25));
 }
 
+.boss-image img,
+.armor-image img,
+.weapon-image img {
+  width: 100%;
+  height: clamp(12rem, 26vw, 19rem);
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.55));
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.boss-card:hover img,
+.armor-card:hover img,
+.weapon-card:hover img {
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.66));
+  transform: scale(1.025);
+}
+
+.image-placeholder {
+  padding: 2rem;
+  color: rgba(215, 182, 103, 0.55);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.card-title {
+  margin: clamp(1.25rem, 3vw, 1.75rem) 0 1rem;
+  color: var(--color-text);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.boss-card p,
+.armor-card p,
+.weapon-card p {
+  margin-top: 0.72rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.boss-card strong,
+.armor-card strong,
+.weapon-card strong {
+  color: var(--color-gold-light);
+  font-weight: 650;
+}
+
+.boss-card ul,
+.armor-card ul,
+.weapon-card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+  list-style: none;
+}
+
+.boss-card li,
+.armor-card li,
+.weapon-card li {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(215, 182, 103, 0.16);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #d4cec0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 39.99rem) {
+  #bossCards,
+  #armorCards,
+  #weaponCards {
+    gap: 1rem;
+    padding-inline: 0.85rem;
+  }
+
+  .page-nav {
+    top: 0.5rem;
+  }
+
+  .boss-card,
+  .armor-card,
+  .weapon-card {
+    padding: 0.85rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  #bossCards,
+  #armorCards,
+  #weaponCards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }

@@ -17,22 +17,28 @@ function Bosses() {
   }, []);
 
   return (
-    <div id="bossCards">
-{/* link to home. dont write /home here */}
-      <nav>
+    <main id="bossCards">
+      <nav className="page-nav" aria-label="Back to home">
         <Link to="/">Home</Link>
       </nav>
 
-      <h2>Bosses</h2>
+      <h1 className="page-title">Bosses</h1>
       {bossData.map((boss) => (
-        <div key={boss.id} className="boss-card">
-          <div className="boss-image">
-            <img
-              src={boss.image ? boss.image : "https://eldenring.fanapis.com/api/bosses?limit=100"}
-              alt={boss.name}
-            />
-          </div>
-          <h2>{boss.name}</h2>
+        <article key={boss.id} className="boss-card">
+          {boss.image ? (
+            <div className="boss-image">
+              <img src={boss.image} alt={boss.name} loading="lazy" decoding="async" />
+            </div>
+          ) : (
+            <div
+              className="image-placeholder"
+              role="img"
+              aria-label={`${boss.name} image unavailable`}
+            >
+              Image unavailable
+            </div>
+          )}
+          <h2 className="card-title">{boss.name}</h2>
           <p><strong>Region:</strong> {boss.region}</p>
           <p><strong>Description:</strong> {boss.description}</p>
           <p><strong>Location:</strong> {boss.location}</p>
@@ -43,9 +49,9 @@ function Bosses() {
             ))}
           </ul>
           <p><strong>Health Points:</strong> {boss.healthPoints}</p>
-        </div>
+        </article>
       ))}
-    </div>
+    </main>
   );
 }
 

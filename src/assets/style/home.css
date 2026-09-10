@@ -1,64 +1,122 @@
-*{
-    padding: 0%;
-    margin:0%
+.home-page {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(2rem, 7vw, 6rem) clamp(1.25rem, 5vw, 5rem);
 }
 
-
-body {
-    background: linear-gradient(to bottom, black 0%, rgb(46, 0, 0) 50%, rgb(136, 0, 0) 100%);
-    display: flex;
-    justify-content: center;  
-    align-items: center; 
+.home-page::before,
+.home-page::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(215, 182, 103, 0.16);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
 }
 
-/*--------------for desktop--------------*/
-@media (min-width: 1000px) {
-
-h1 {
-    font-size: 120px;
-    padding-bottom: 30px;
-    font-family: "Grey Qo", cursive;
-    font-weight: 400;
-    font-style: normal;
+.home-page::before {
+  width: min(72vw, 54rem);
+  aspect-ratio: 1;
+  box-shadow: 0 0 8rem rgba(153, 103, 39, 0.08) inset;
 }
 
-nav {
-    font-size: 32px;
-    text-align: center;
-    font-family: "Yeseva One", serif;
-    font-weight: 400;
-    font-style: normal;
+.home-page::after {
+  width: min(58vw, 42rem);
+  aspect-ratio: 1;
+  border-color: rgba(215, 182, 103, 0.09);
 }
 
-ul {
-    list-style-type: none;
+.home-content {
+  width: min(100%, 68rem);
+  text-align: center;
 }
 
+.home-kicker {
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  color: var(--color-gold);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: clamp(0.72rem, 1.5vw, 0.92rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
+.home-title {
+  color: var(--color-text);
+  font-family: "Grey Qo", "Brush Script MT", cursive;
+  font-size: clamp(4.25rem, 14vw, 9.5rem);
+  font-weight: 400;
+  line-height: 0.78;
+  text-wrap: balance;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.78), 0 0 36px rgba(215, 182, 103, 0.1);
+}
 
-/*--------------for mobile--------------*/
+.home-intro {
+  max-width: 42rem;
+  margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+  color: var(--color-text-muted);
+  font-size: clamp(0.95rem, 2vw, 1.12rem);
+  line-height: 1.75;
+  text-wrap: balance;
+}
 
-@media (max-width: 999px) {
+.home-nav {
+  margin-top: clamp(2rem, 6vw, 4rem);
+}
 
-    h1 {
-        font-size: 32px;
-        padding-bottom: 20px;
-        font-family: "Grey Qo", cursive;
-        font-weight: 400;
-        font-style: normal;
-    }
-    
-    nav {
-        font-size: 16px;
-        text-align: center;
-        font-family: "Yeseva One", serif;
-        font-weight: 400;
-        font-style: normal;
-    }
-    
-    ul {
-        list-style-type: none;
-    }
+.home-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  list-style: none;
+}
 
+.home-nav a {
+  display: grid;
+  min-width: clamp(9rem, 18vw, 12rem);
+  min-height: 3.25rem;
+  place-items: center;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, rgba(41, 39, 32, 0.9), rgba(17, 18, 17, 0.84));
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+  color: var(--color-gold-light);
+  font-family: "Yeseva One", Georgia, serif;
+  font-size: clamp(0.88rem, 1.8vw, 1.05rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-nav a:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38), 0 0 24px rgba(215, 182, 103, 0.1);
+  color: #fff3c4;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 39.99rem) {
+  .home-page::before {
+    width: 130vw;
+  }
+
+  .home-page::after {
+    width: 100vw;
+  }
+
+  .home-nav ul {
+    width: min(100%, 20rem);
+    margin-inline: auto;
+  }
+
+  .home-nav li,
+  .home-nav a {
+    width: 100%;
+  }
 }

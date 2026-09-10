@@ -17,27 +17,33 @@ function Armor() {
   }, []);
 
   return (
-    <div id="armorCards">
-{/* link to home. dont write /home here */}
-      <nav>
+    <main id="armorCards">
+      <nav className="page-nav" aria-label="Back to home">
         <Link to="/">Home</Link>
       </nav>
 
-      <h2>Armors</h2>
+      <h1 className="page-title">Armors</h1>
       {armorData.map((armor) => (
-        <div key={armor.id} className="armor-card">
-          <div className="armor-image">
-            <img
-              src={armor.image ? armor.image : "https://eldenring.fanapis.com/api/armors?limit=100"}
-              alt={armor.name}
-            />
-          </div>
-          <h2>{armor.name}</h2>
+        <article key={armor.id} className="armor-card">
+          {armor.image ? (
+            <div className="armor-image">
+              <img src={armor.image} alt={armor.name} loading="lazy" decoding="async" />
+            </div>
+          ) : (
+            <div
+              className="image-placeholder"
+              role="img"
+              aria-label={`${armor.name} image unavailable`}
+            >
+              Image unavailable
+            </div>
+          )}
+          <h2 className="card-title">{armor.name}</h2>
           <p><strong>Description:</strong> {armor.description}</p>
           <p><strong>Weight:</strong> {armor.weight}</p>
-        </div>
+        </article>
       ))}
-    </div>
+    </main>
   );
 }
 
