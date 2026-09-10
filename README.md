@@ -4,7 +4,7 @@ A React application that displays bosses, weapons, and armor from the [Elden Rin
 
 ## Requirements
 
-- Node.js 20 or later
+- Node.js 24
 - npm
 
 ## Development
